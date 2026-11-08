@@ -1,3 +1,12 @@
+/**
+ * 
+ * Team Name: The best programmers
+ * Team Members: Yakez Owens, Josh Painter, Saul Prieto, Steven Ruiz
+ * Course: 2430
+ * Project: CS 2430 - Programming Project 3
+ *
+ */
+
 package prj3;
 
 /**
