@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 /**
- * 
  * @author Josh Painter
  */
 public class Main {
@@ -22,11 +21,11 @@ public class Main {
 		
 		ArrayList<Experiment> experiments = fillArrayList();
 		
-		System.out.println(experiments);
+		//System.out.println(experiments);
 		
-		sortByWeight(experiments);
-		sortByRating(experiments);
-		sortByScore(experiments);
+		Greedy.sortByHighestRating(experiments);
+		Greedy.sortByLightestWeight(experiments);
+		Greedy.sortByHighestScore(experiments);
 		
 	}
 	
@@ -53,36 +52,6 @@ public class Main {
 		experiments.add(new Experiment("Yeast Fermentation", 27, 4));
 		
 		return experiments;
-	}
-	
-	/**
-	 * Sorts and prints out an ArrayList of experiments by weight
-	 * 
-	 * @param experiments
-	 */
-	public static void sortByWeight(ArrayList<Experiment> experiments) {
-		experiments.sort(Comparator.comparingInt(Experiment::getWeight));
-		System.out.println(experiments);
-	}
-	
-	/**
-	 * Sorts and prints out an ArrayList of experiments by Rating
-	 * 
-	 * @param experiments
-	 */
-	public static void sortByRating(ArrayList<Experiment> experiments) {
-		experiments.sort(Comparator.comparingInt(Experiment::getRating));
-		System.out.println(experiments);
-	}
-	
-	/**
-	 * Sorts and prints out an ArrayList of experiments by score
-	 * 
-	 * @param experiments
-	 */
-	public static void sortByScore(ArrayList<Experiment> experiments) {
-		experiments.sort(Comparator.comparingDouble(Experiment::getScore));
-		System.out.println(experiments);
 	}
 
 }
