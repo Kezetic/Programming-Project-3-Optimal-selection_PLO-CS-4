@@ -13,10 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a possible solution to the Knapsack Problem.
- * Stores the selected experiments and their total weight and rating.
- *
- * @author Steven Ruiz
+ * @author Yakez Owens, Josh Painter, Saul Prieto, Steven Ruiz
  */
 public class Solution {
 
