@@ -21,11 +21,6 @@ public class Solution {
     private int totalWeight;
     private int totalRating;
 
-    /**
-     * Constructs a solution using a selected list of experiments.
-     *
-     * @param experiments selected experiments
-     */
     public Solution(List<Experiment> experiments) {
         this.experiments = new ArrayList<>(experiments);
         totalWeight = Greedy.totalWeight(this.experiments);
