@@ -15,7 +15,6 @@
     - Pseudocode.md
     - TestPlan.md
 
-
     - README.md
     - CONTRIBUTIONS.md
     - .gitignore
