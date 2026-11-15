@@ -1,125 +1,131 @@
-**Programming Project 3 – The Knapsack Problem**
+**Programming-Project-3-Optimal-Selection_PLO-CS-4**
+**CS 2430, Section 501 | Programming Project 3 – The Knapsack Problem**
 
-This document outlines our team organization, assigned responsibilities, development tasks, and project goals for Programming Project 3 – The Knapsack Problem.
+**Team Members:** Yakez Owens, Josh Painter, Saul Prieto, Steven Ruiz
 
-The objective of this project is to implement and compare different approaches to the Knapsack Problem by selecting the best combination of science experiments without exceeding the maximum payload capacity of 700 kg.
+**1. What This Project Does**
+This project applies concepts from discrete mathematics, algorithm design, and optimization to solve the classic 0/1 Knapsack Problem using practical programming solutions.
 
-Our team will implement three greedy algorithms, a brute-force solution, and optionally a Dynamic Programming solution for extra credit. We will also prepare a formal technical report and a screencast demonstrating our implementation and results.
+The program models a space shuttle payload selection problem in which a maximum of 700 kg of scientific experiments can be transported into near-Earth orbit. Each experiment has a specific weight and scientific rating. The goal is to select a combination of experiments that maximizes the total rating without exceeding the shuttle's weight capacity.
 
-**Team Members and Responsibilities**
+*The project implements and compares multiple algorithmic approaches:*
 
-To maintain an organized workflow and ensure accountability, the following responsibilities have been established:
+**Part 1 – Greedy Algorithms**
+Three greedy strategies independently select experiments based on different priorities:
+**Highest Rating First:** Selects experiments in descending order of rating, prioritizing the experiments with the highest individual scientific value.
+Lightest First: Selects experiments in ascending order of weight, prioritizing experiments that use the least payload capacity.
+**Best Rating-to-Weight Ratio First:** Calculates each experiment's rating divided by its weight and prioritizes experiments with the highest value per kilogram.
+Each strategy produces a list of selected experiments, total weight, and total scientific rating. No strategy is allowed to exceed the 700 kg capacity.
 
-**Yakez Owens** – Communications Lead
-- Organize and maintain the GitHub repository.
-- Manage the Project Plan, README, and project documentation.
-- Coordinate the final team report and submission materials.
-- Ensure that all project deliverables are properly organized.
+**Part 2 – Brute-Force / Exhaustive Search**
+The program generates and evaluates all 4,096 possible combinations of the 12 available experiments.
+For each combination, it calculates the total weight and rating. Combinations exceeding 700 kg are rejected. The remaining valid combinations are compared to identify the three highest-rated solutions.
 
-**Josh Painter** – Implementation Lead
-- Lead the implementation of the three greedy strategies:
-- Highest Rating First.
-- Lightest Weight First.
-- Best Rating-to-Weight Ratio First.
-- Coordinate the brute-force algorithm.
-- Ensure the code is properly organized and integrated.
+**Part 3 – Algorithm Comparison**
+The program compares the results of all three greedy strategies against the brute-force optimal solution.
+It displays the selected experiments, total weight, and total rating for each strategy and identifies which greedy strategies match the optimal result.
+This comparison demonstrates the differences between locally optimal decisions and globally optimal solutions.
 
-**Saul Prieto** – Verification Lead
-- Develop and execute test cases for all algorithms.
-- Verify that no selected combination exceeds the 700 kg limit.
-- Check the accuracy of total weights and ratings.
-- Compare algorithm results and identify the optimal solution.
+**Part 4 – Dynamic Programming (Extra Credit)**
+An optional dynamic programming implementation can solve the knapsack problem by storing the best possible rating for smaller experiment groups and weight capacities.
+Instead of recalculating every possible combination, dynamic programming reuses previously calculated results to improve efficiency for larger datasets.
+If implemented, the program displays the optimal experiment selection and compares its results and computational complexity with brute force.
 
-**Steven Ruiz** – Development and Integration Support
-- Assist with implementing and integrating the algorithms.
-- Help debug the program and improve code readability.
-- Assist with the comparison summary and Dynamic Programming pseudocode or implementation.
-- Help prepare the screencast and final project demonstration.
+**2. Requirements**
+- Java JDK
+- No external libraries
 
-**Project Requirements and Main Tasks**
+**3. How to Build and Run**
+The project should run using the team's selected programming language without requiring external dependencies.
+For a Java implementation, run:
 
-**Phase 1** – Project Setup and Documentation
-    Create and organize the shared GitHub repository.
-    Create the /docs folder.
-    Prepare the Project Plan.
-    Include at least two design artifacts (pseudocode, UML, structure diagram, design notes, or test plan).
-    Create the README with build and execution instructions.
-    Create CONTRIBUTIONS.md to document individual responsibilities and evidence.
+# Run the complete project
+Java main.java
+For a Java implementation, compile and run the project using the appropriate package and class structure.
 
-**Phase 2** – Algorithm Implementation
-    Implement the Highest Rating First strategy.
-    Implement the Lightest Weight First strategy.
-    Implement the Best Rating-to-Weight Ratio First strategy.
-    Implement brute-force search to evaluate all 4,096 possible subsets.
-    Display the three highest-rated valid subsets.
-    Create a comparison summary identifying which greedy strategy performs closest to the optimal solution.
-    Include Dynamic Programming pseudocode in the source code if the extra-credit implementation is not completed.
+**The program displays:**
+Results from all three greedy algorithms.
+The three highest-rated valid brute-force combinations.
+The overall optimal experiment selection.
+A comparison of greedy results against the optimal solution.
+Dynamic programming results, if implemented.
+All output is labeled clearly so that each algorithm's results can be identified and compared.
 
-**Phase 3** – Testing and Verification
-    Verify that all solutions remain within the 700 kg weight limit.
-    Check that total weights and ratings are calculated correctly.
-    Compare brute-force results against the greedy strategies.
-    Test edge cases and verify the optimal combination.
-    Document testing results and verification evidence.
+**4. Project Layout**
+Programming-Project-3/
+│
+├── main.java                  Main program; runs all algorithms
+├── experiments.java           Stores the 12 scientific experiments
+├── greedy.java                 Contains the three greedy strategies
+├── brute_force.java            Evaluates all possible subsets
+├── dynamic_programming.java    Optional DP implementation
+│
+├── docs/
+│   ├── PROJECT_PLAN.md       Project scope, roles, milestones
+│   ├── PSEUDOCODE.md         Algorithm pseudocode
+│   ├── DESIGN_NOTES.md       Design decisions and complexity
+│   └── TEST_PLAN.md          Testing and verification procedures
+│
+├── README.md                 Project description and run instructions
+├── CONTRIBUTIONS.md          Team roles and individual contributions
+└── .gitignore
 
-**Phase 4** – Final Report and Presentation
-    Prepare a professional team report (3–5 pages).
-    Explain the algorithms, methods, results, and comparisons.
-    Answer all questions listed in Section 8 of the assignment.
-    Prepare the final screencast (maximum 10 minutes).
-    Ensure every team member participates in the presentation.
-    Review all files before the final Canvas submission.
+**5. Design Notes**
+**Experiment Representation:** Each experiment is represented using its name, weight in kilograms, and scientific rating. The program stores all 12 experiments in a structured collection.
+**Weight Constraint:** Every selection must satisfy the condition that its total weight is less than or equal to 700 kg. Experiments are indivisible, meaning an experiment must either be selected completely or excluded.
+**Greedy Algorithms:** Each greedy strategy sorts the experiments according to its selection criteria and adds an experiment only when sufficient capacity remains.
+**Brute-Force Algorithm:** The exhaustive search represents each possible selection using a binary combination. Each of the 12 experiments can either be included or excluded, resulting in 2^12 = 4,096 possible subsets.
+**Dynamic Programming:** The optional DP approach uses a table where each entry stores the highest rating achievable using a particular number of experiments and weight capacity. The table is used to reconstruct the optimal selection.
 
-**Initial Project Progress** - The initial planning stage included:
+**Complexity Analysis:**
+**Greedy algorithms:** O(n log n), primarily due to sorting.
+**Brute force:** O(2^n × n) when evaluating every subset by examining its experiments.
+**Dynamic programming:** O(nW), where n is the number of experiments and W is the maximum weight capacity.
+**Validation:** Every algorithm must verify that the selected experiments do not exceed the 700 kg limit. The brute-force solution also serves as a reference for evaluating the accuracy of the greedy strategies.
 
-  Reviewing the complete Programming Project 3 assignment requirements.
-  Organizing the main programming tasks and deliverables.
-  Identifying the required algorithms and testing responsibilities.
-  Establishing proposed team roles and responsibilities.
-  Reviewing the documentation and submission requirements.
-  
-**Project Milestones and Goals**
+**6. Project Results and Expected Comparison**
+*Using the 12 experiments supplied in the assignment, the initial calculated results are:*
+Algorithm	Total Weight	Total Rating
+Highest Rating First	690 kg	45
+Lightest First	654 kg	52
+Best Ratio First	654 kg	52
+Brute-Force Optimal	692 kg	53
+The brute-force algorithm identifies the highest possible rating of 53 while remaining within the 700 kg weight restriction.
 
-Our main goals are to complete the implementation, verify the results, and prepare all deliverables before the November 15, 2026 deadline.
+- The results demonstrate that greedy algorithms can produce strong solutions, but they do not always identify the globally optimal combination.
+- The dynamic programming implementation, if completed, should produce the same optimal rating as brute force.
 
-- Milestone	Target
-- Repository and documentation setup	Completed
-- Algorithm implementation	Completed
-- Testing and verification	Completed
-- Final report	Completed
-- Screencast	Completed
-- Final package review and submission	Final review
+**7. Team Roles and Responsibilities**
+**Yakez Owens – Communications Lead:** Responsible for organizing the GitHub repository, maintaining project documentation, coordinating communication, and managing the Project Plan and README.
 
-**Team Collaboration and GitHub Workflow**
+**Josh Painter – Implementation Lead:** Responsible for implementing the three greedy algorithms, coordinating the brute-force implementation, and maintaining the main development branch.
 
-We will use this shared GitHub repository as our central workspace for collaboration and project management.
+**Saul Prieto – Verification Lead:** Responsible for developing the test plan, verifying algorithm correctness, checking edge cases, and ensuring that experiment selections never exceed the 700 kg capacity.
 
-Each team member should:
+**Steven Ruiz – Development and Integration Support:** Responsible for supporting algorithm development, integrating program components, contributing to technical documentation, and assisting with the final project demonstration.
 
-- Keep the repository updated with their contributions.
-- Use commits and pull requests to document completed work.
-- Communicate progress and report any issues.
-- Update the Project Plan as tasks are completed.
-- Include evidence pointers for completed tasks.
-- Review the final project files to ensure consistency.
+Official role rotation and individual evidence of contributions will be documented in PROJECT_PLAN.md and CONTRIBUTIONS.md.
 
-**Final Project Deliverables**
+**8. Documentation and Evidence**
+   
+Project Plan with assigned responsibilities, milestones, and task statuses.
+Algorithm pseudocode and design notes.
+Test Plan with expected results and verification procedures.
+README with project overview and execution instructions.
+CONTRIBUTIONS.md identifying team responsibilities and evidence pointers.
+GitHub commits, issues, and pull requests provide evidence of individual contributions and project development.
 
-Our final submission package must include:
+The team will also maintain a record of completed tasks and supporting evidence to demonstrate progress throughout the project.
 
-**Team Report:** PDF or DOCX, submitted separately.
-**Code Package:** ZIP containing source code, supporting files, /docs, README, and CONTRIBUTIONS.md.
-**Screencast:** Video file or accessible sharing link.
-**Documentation:** Project Plan and required design artifacts.
+**9. Final Deliverables**
+The completed project will include:
 
-Weekly Status Reports and the End-of-Project Peer Review will be submitted separately through Canvas.
-
-**Team Commitment**
-
-Our goal is to maintain clear communication, distribute responsibilities fairly, document individual contributions, and ensure that every team member participates in the successful completion of this project.
-
-This repository will serve as the central location for our source code, documentation, testing evidence, and final project materials.
-
-**Project Deadline:** November 15, 2026, at 11:59 PM.
-
-**Team:** Yakez Owens, Josh Painter, Saul Prieto, and Steven Ruiz.
+Three working greedy algorithm implementations.
+A brute-force implementation evaluating all 4,096 possible subsets.
+A comparison of the three greedy results against the optimal solution.
+Dynamic programming implementation for extra credit, if completed.
+A professional team report (3–5 pages, excluding tables and appendices).
+A complete GitHub repository containing source code and documentation.
+CONTRIBUTIONS.md with team responsibilities and evidence.
+A screencast of no more than 10 minutes demonstrating the program and each team member's contribution.
+The final submission will include a standalone PDF or DOCX report, a ZIP package exported from the repository, and the team screencast or an accessible video link.
